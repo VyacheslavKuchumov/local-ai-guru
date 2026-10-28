@@ -13,10 +13,10 @@
 
 - Personal, non-commercial project (user clarification, 2026-10-28). Commercial licensing is not a selection requirement; check each artifact's actual permitted-use terms.
 - Windows target: Ryzen 5 5600X, 16 GB RAM, RTX 3060 with 12 GB VRAM.
-- User reports WSL is installed. Evaluate WSL2-hosted runtime/harness first; WSL version, distro, GPU access and isolation remain unverified. WSL alone is not an offline or filesystem boundary.
+- Target user reports Ubuntu 24.04.5 LTS in WSL. Synthetic runner tests pass; pinned llama.cpp b11968 CUDA 12.8 launches and lists the RTX 3060. Model inference, WSL version and isolation remain unverified. Evaluate WSL2-hosted runtime/harness first; WSL alone is not an offline or filesystem boundary. Evidence: docs/research/target-inventory.md.
 - Use llama.cpp for local inference. Evaluate open-source Hugging Face GGUF models against the target hardware and actual tasks.
 - Expected load: one or at most two people. Start with one loaded model and a bounded inference queue; evaluate concurrency against measured memory and latency.
-- Total product disk budget: target 100 GB decimal, including product WSL overhead, models, environments, original knowledge packs, indexes, restore artifacts and update/test headroom; existing Windows OS excluded. Feasibility is unverified. Compare large models sequentially within peak budget; target-machine tests are deferred until user access is available.
+- Total product disk budget: target 100 GB decimal, including product WSL overhead, models, environments, original knowledge packs, indexes, restore artifacts and update/test headroom; existing Windows OS excluded. Feasibility is unverified. Compare large models sequentially within peak budget; the user now runs target commands manually and supplies output.
 - Model selection must include current Qwen and Gemma candidates. Prefer Unsloth GGUF conversions where available; verify base provenance, complete projector footprint and runtime compatibility. Compare quantizations on real tasks; Q8 fit is unverified.
 - The installed product must work offline by default. Network enablement requires an explicit user command. No VPN dependency or automatic host VPN changes.
 - Model API agents used during development are separate from the offline product; never describe their cloud inference as local.

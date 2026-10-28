@@ -64,3 +64,7 @@ git rev-parse HEAD
 Ручной prebuilt runtime шаг пользователя теперь зафиксирован как выполненный до launch/device-enumeration preflight, без доказательства model inference. Org независимо проверяет закреплённые метаданные первого GGUF и ведёт следующий ручной лот/публикацию; новый survey не требуется. Этот update не разрешает дополнительных загрузок, установок или изменений WSL. Первый shortlist остаётся Qwen3.5-9B и обязательное сравнение Gemma 4 E4B; pairing/качество/offload/isolation требуют отдельных будущих результатов.
 
 План и gates: [PLAN.md](../../PLAN.md); модельный состав и byte evidence: [models.md](models.md), [offload.md](offload.md).
+
+## Дополнение: получение Qwen набора
+
+Пользователь передал подтверждение: `Qwen3.5-9B-Q4_K_M.gguf` и соответствующий `mmproj-F16.gguf` скачаны, **SHA-256 обоих файлов PASS**. Это пользовательский receipt, не самостоятельная проверка агента. Результат model inference ещё не предоставлен; получение файлов не меняет статусы pairing/качества/offload/isolation.

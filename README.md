@@ -46,14 +46,28 @@ df -h .
 
 Для настоящего benchmark понадобятся локальные llama.cpp, GGUF и отдельная ведомость занимаемого места. Команды и ограничения описаны в [инструкции runner](scripts/bench-offload/README.md). Успех синтетических тестов подтверждает работу скрипта, а не скорость или вместимость модели.
 
-Следующий runtime-кандидат для Ubuntu 24.04 x64: официальная [сборка llama.cpp b11968](https://github.com/ggml-org/llama.cpp/releases/tag/b11968), CUDA 12.8. Метаданные release API проверены 28.10.2026; это выбор для проверки, запуск на целевой машине ещё не подтверждён. Два архива вместе занимают 776895574 байта загрузки; распакованный размер отдельно не измерен. CUDA Toolkit и Linux-драйвер для этого шага не устанавливаются.
+## Загрузка runtime и моделей
+
+[Загрузчики](scripts/download/README.md) используют закреплённые URL, размеры и SHA-256 из [manifest.json](scripts/download/manifest.json). Каждая команда выбирает один набор; данные сохраняются вне Git, в `~/local-ai-guru-data/`.
+
+```sh
+git pull --ff-only
+python3 scripts/download/runtime.py --dry-run
+python3 scripts/download/runtime.py
+python3 scripts/download/qwen.py
+python3 scripts/download/gemma.py
+```
+
+`--dry-run` показывает выбранные файлы без сети и записи данных; запуск без него явно запускает подготовку выбранного набора. Уже готовые файлы проверяются по размеру и SHA-256, частичные загрузки продолжаются. Runtime и Qwen используют те же каталоги и имена, что предыдущие ручные команды; Gemma — `~/local-ai-guru-data/models/gemma4-e4b/`. Не запускать загрузчик одновременно с ручным `curl`, пишущим в тот же файл. Загрузчик не запускает модели и не устанавливает системные пакеты.
+
+Runtime для первого опыта на Ubuntu 24.04 x64: официальная [сборка llama.cpp b11968](https://github.com/ggml-org/llama.cpp/releases/tag/b11968), CUDA 12.8. Метаданные release API проверены 28.10.2026; пользователь подтвердил SHA-256 архивов, запуск и обнаружение RTX 3060. Каталог с архивами и извлечёнными файлами занимает около 1.8G по `du`; это округлённый пользовательский замер. Два архива вместе занимают 776895574 байта загрузки. CUDA Toolkit и Linux-драйвер для этого шага не устанавливаются.
 
 | Архив из release b11968 | Bytes | SHA-256 |
 | --- | ---: | --- |
 | `llama-b11968-bin-ubuntu-cuda-12.8-x64.tar.gz` | 182523698 | `d7184d295ccf59b0ecc5291d4c0ff63c66f285349797c2e3467913813e4caf6f` |
 | `cudart-llama-b11968-bin-ubuntu-cuda-12.8-x64.tar.gz` | 594371876 | `6bcec205a4dcc1e9b88b70ccad62d6c3a42f5bdaefd3d84ba02da0d2d1f62bec` |
 
-Первый модельный набор для ручной подготовки: [Unsloth Qwen3.5-9B GGUF](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/tree/3885219b6810b007914f3a7950a8d1b469d598a5), revision `3885219b6810b007914f3a7950a8d1b469d598a5`. Метаданные Hugging Face проверены 28.10.2026; в сумме 6598688544 байта (около 6.60 GB загрузки). SHA-256 ниже взят из LFS metadata, не из Git blob oid. Веса агентом не скачивались; target inference ещё не подтверждён.
+Первый модельный набор: [Unsloth Qwen3.5-9B GGUF](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/tree/3885219b6810b007914f3a7950a8d1b469d598a5), revision `3885219b6810b007914f3a7950a8d1b469d598a5`. Метаданные Hugging Face проверены 28.10.2026; в сумме 6598688544 байта (около 6.60 GB загрузки). SHA-256 ниже взят из LFS metadata, не из Git blob oid. Пользователь подтвердил загрузку и SHA-256 обоих файлов; инференс ещё не подтверждён. Веса на машине агента не скачивались.
 
 | Файл | Bytes | SHA-256 |
 | --- | ---: | --- |

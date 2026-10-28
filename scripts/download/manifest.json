@@ -1,0 +1,83 @@
+{
+  "retrieval_date": "2026-10-28",
+  "bundles": {
+    "runtime": {
+      "destination": "runtime/b11968-cuda12.8",
+      "source": "https://github.com/ggml-org/llama.cpp/releases/download/b11968/",
+      "runtime_license": "llama.cpp: MIT",
+      "cuda_terms": "NVIDIA CUDA redistribution terms apply to cudart; see upstream release/package terms. Not represented as MIT.",
+      "assets": [
+        {
+          "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11968/llama-b11968-bin-ubuntu-cuda-12.8-x64.tar.gz",
+          "filename": "llama-b11968-bin-ubuntu-cuda-12.8-x64.tar.gz",
+          "local_name": "llama.tar.gz",
+          "bytes": 182523698,
+          "sha256": "d7184d295ccf59b0ecc5291d4c0ff63c66f285349797c2e3467913813e4caf6f"
+        },
+        {
+          "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11968/cudart-llama-b11968-bin-ubuntu-cuda-12.8-x64.tar.gz",
+          "filename": "cudart-llama-b11968-bin-ubuntu-cuda-12.8-x64.tar.gz",
+          "local_name": "cudart.tar.gz",
+          "bytes": 594371876,
+          "sha256": "6bcec205a4dcc1e9b88b70ccad62d6c3a42f5bdaefd3d84ba02da0d2d1f62bec"
+        }
+      ],
+      "runtime_license_source": "https://github.com/ggml-org/llama.cpp/blob/b11968/LICENSE",
+      "cuda_terms_source": "https://github.com/ggml-org/llama.cpp/releases/tag/b11968"
+    },
+    "qwen": {
+      "destination": "models/qwen3.5-9b",
+      "publisher_base": "Qwen / Qwen3.5-9B",
+      "conversion": "Unsloth GGUF conversion",
+      "repository": "unsloth/Qwen3.5-9B-GGUF",
+      "assets": [
+        {
+          "url": "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/resolve/3885219b6810b007914f3a7950a8d1b469d598a5/Qwen3.5-9B-Q4_K_M.gguf",
+          "filename": "Qwen3.5-9B-Q4_K_M.gguf",
+          "local_name": "Qwen3.5-9B-Q4_K_M.gguf",
+          "bytes": 5680522464,
+          "sha256": "03b74727a860a56338e042c4420bb3f04b2fec5734175f4cb9fa853daf52b7e8"
+        },
+        {
+          "url": "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/resolve/3885219b6810b007914f3a7950a8d1b469d598a5/mmproj-F16.gguf",
+          "filename": "mmproj-F16.gguf",
+          "local_name": "mmproj-F16.gguf",
+          "bytes": 918166080,
+          "sha256": "f70dc3509053962b0d0d3ee8a7eacebf5d60aa560cad78254ae8698516ae029f"
+        }
+      ],
+      "publisher_base_source": "https://huggingface.co/Qwen/Qwen3.5-9B",
+      "conversion_source": "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/tree/3885219b6810b007914f3a7950a8d1b469d598a5",
+      "publisher_license": "Apache-2.0",
+      "conversion_license": "Apache-2.0",
+      "conversion_revision": "3885219b6810b007914f3a7950a8d1b469d598a5"
+    },
+    "gemma": {
+      "destination": "models/gemma4-e4b",
+      "publisher_base": "Google / Gemma 4 E4B-it",
+      "conversion": "Unsloth GGUF conversion",
+      "repository": "unsloth/gemma-4-E4B-it-GGUF",
+      "assets": [
+        {
+          "url": "https://huggingface.co/unsloth/gemma-4-E4B-it-GGUF/resolve/bfc15c382204943c3a8fff0c750b94ae2364d7a3/gemma-4-E4B-it-Q4_K_M.gguf",
+          "filename": "gemma-4-E4B-it-Q4_K_M.gguf",
+          "local_name": "gemma-4-E4B-it-Q4_K_M.gguf",
+          "bytes": 4977171584,
+          "sha256": "85a896a047553e842f25297ee5b031d64ff30147d9c4af17b1e4b394cd1fab87"
+        },
+        {
+          "url": "https://huggingface.co/unsloth/gemma-4-E4B-it-GGUF/resolve/bfc15c382204943c3a8fff0c750b94ae2364d7a3/mmproj-F16.gguf",
+          "filename": "mmproj-F16.gguf",
+          "local_name": "mmproj-F16.gguf",
+          "bytes": 990372672,
+          "sha256": "ddf46c21d7078e95338cfc22306b19b276a29a5ad089023449dd54d4b6170a51"
+        }
+      ],
+      "publisher_base_source": "https://huggingface.co/google/gemma-4-E4B-it",
+      "conversion_source": "https://huggingface.co/unsloth/gemma-4-E4B-it-GGUF/tree/bfc15c382204943c3a8fff0c750b94ae2364d7a3",
+      "publisher_license": "Apache-2.0",
+      "conversion_license": "Apache-2.0",
+      "conversion_revision": "bfc15c382204943c3a8fff0c750b94ae2364d7a3"
+    }
+  }
+}
