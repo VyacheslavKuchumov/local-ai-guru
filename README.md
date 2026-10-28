@@ -52,3 +52,10 @@ df -h .
 | --- | ---: | --- |
 | `llama-b11968-bin-ubuntu-cuda-12.8-x64.tar.gz` | 182523698 | `d7184d295ccf59b0ecc5291d4c0ff63c66f285349797c2e3467913813e4caf6f` |
 | `cudart-llama-b11968-bin-ubuntu-cuda-12.8-x64.tar.gz` | 594371876 | `6bcec205a4dcc1e9b88b70ccad62d6c3a42f5bdaefd3d84ba02da0d2d1f62bec` |
+
+Первый модельный набор для ручной подготовки: [Unsloth Qwen3.5-9B GGUF](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/tree/3885219b6810b007914f3a7950a8d1b469d598a5), revision `3885219b6810b007914f3a7950a8d1b469d598a5`. Метаданные Hugging Face проверены 28.10.2026; в сумме 6598688544 байта (около 6.60 GB загрузки). SHA-256 ниже взят из LFS metadata, не из Git blob oid. Веса агентом не скачивались; target inference ещё не подтверждён.
+
+| Файл | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `Qwen3.5-9B-Q4_K_M.gguf` | 5680522464 | `03b74727a860a56338e042c4420bb3f04b2fec5734175f4cb9fa853daf52b7e8` |
+| `mmproj-F16.gguf` | 918166080 | `f70dc3509053962b0d0d3ee8a7eacebf5d60aa560cad78254ae8698516ae029f` |
