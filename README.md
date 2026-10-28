@@ -24,7 +24,7 @@
 
 Материалы исследования: [модели](docs/research/models.md), [библиотека знаний](docs/research/knowledge.md), [среды разработки](docs/research/environments.md) и [границы доступа](docs/research/harness.md). Приведённые оценки требуют проверки на целевой Windows-машине.
 
-[Крупные модели и RAM offload](docs/research/offload.md), [инструмент будущих тестов в WSL](scripts/bench-offload/README.md). Прогоны на целевой машине отложены; результаты разработки скрипта не являются замерами моделей.
+[Крупные модели и RAM offload](docs/research/offload.md), [инструмент тестов в WSL](scripts/bench-offload/README.md). По выводу пользователя от 28.10.2026 все 10 синтетических тестов прошли на целевой WSL, RTX 3060 видна через `nvidia-smi`. Инференс моделей, скорость и пригодность offload ещё не проверены.
 
 ## Первые проверки в WSL
 
