@@ -13,7 +13,7 @@
 
 - Personal, non-commercial project (user clarification, 2026-10-28). Commercial licensing is not a selection requirement; check each artifact's actual permitted-use terms.
 - Windows target: Ryzen 5 5600X, 16 GB RAM, RTX 3060 with 12 GB VRAM.
-- Target user reports Ubuntu 24.04.5 LTS in WSL. Synthetic runner tests pass; pinned llama.cpp b11968 CUDA 12.8 launches and lists the RTX 3060. Model inference, WSL version and isolation remain unverified. Evaluate WSL2-hosted runtime/harness first; WSL alone is not an offline or filesystem boundary. Evidence: docs/research/target-inventory.md.
+- Target user reports Ubuntu 24.04.5 LTS in WSL. Synthetic runner tests pass; pinned llama.cpp b11968 CUDA 12.8 launches and lists the RTX 3060. The user supplied a first Qwen3.5-9B text response with CLI rates 155.6 prompt / 53.6 generation tokens/s; this is one reported run, not a quality or memory benchmark. Paired vision, WSL version and isolation remain unverified. Evaluate WSL2-hosted runtime/harness first; WSL alone is not an offline or filesystem boundary. Evidence: docs/research/target-inventory.md.
 - Use llama.cpp for local inference. Evaluate open-source Hugging Face GGUF models against the target hardware and actual tasks.
 - Expected load: one or at most two people. Start with one loaded model and a bounded inference queue; evaluate concurrency against measured memory and latency.
 - Total product disk budget: target 100 GB decimal, including product WSL overhead, models, environments, original knowledge packs, indexes, restore artifacts and update/test headroom; existing Windows OS excluded. Feasibility is unverified. Compare large models sequentially within peak budget; the user now runs target commands manually and supplies output.

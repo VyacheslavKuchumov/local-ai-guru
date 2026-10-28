@@ -28,7 +28,7 @@
 - Target synthetic suite: **PASS по пользовательскому выводу**. Агент не повторял suite; 4.296 s — время синтетических тестов, не latency/tokens per second модели.
 - GPU visibility и guest RAM/filesystem snapshot: **данные получены от пользователя**. Distro Ubuntu 24.04.5 LTS/noble и результат PATH-проверки записаны в дополнении. WSL version, kernel/architecture/libc, версии найденных инструментов, Windows build/free memory, exact host volume bytes и physical VHDX accounting ещё не записаны.
 - Prebuilt runtime b11968 CUDA 12.8: download/SHA-256, запуск и CUDA device enumeration — **PASS по пользовательскому выводу**. Соответствующий более ранний PATH miss не означает, что этот portable runtime отсутствует.
-- llama.cpp CUDA inference, GGUF/projector pairing, TTFT/throughput, peak RAM/VRAM под моделью, code/RU/vision quality, offline isolation и cold restore: **not run / результатов нет**.
+- Первый text-only inference Qwen3.5-9B: **получен пользовательский stdout**, подробнее ниже. GGUF/projector vision pairing, TTFT, peak RAM/VRAM под моделью, полная code/RU/vision quality, offload comparison, offline isolation и cold restore: **not run / результатов нет**. CLI throughput одного запуска записан отдельно и не заменяет эти проверки.
 - Сохранить текущее окружение около 8 GB как первый baseline. Не требуется менять RAM сейчас. Возможное сравнение ceiling 8/10 GB остаётся поздним отдельным опытом, без правок memory/swap или shutdown в этом шаге.
 - Ограничение всего продукта **100000000000 bytes** сохраняется. Guest `953G avail` и поздний C: `96G avail` не заменяют 100 GB product ledger: они округлены и не дают allocated VHDX/точный Windows free-byte учёт. Сообщение об освобождении места не меняет product cap.
 
@@ -61,10 +61,20 @@ g++ --version
 git rev-parse HEAD
 ```
 
-Ручной prebuilt runtime шаг пользователя теперь зафиксирован как выполненный до launch/device-enumeration preflight, без доказательства model inference. Org независимо проверяет закреплённые метаданные первого GGUF и ведёт следующий ручной лот/публикацию; новый survey не требуется. Этот update не разрешает дополнительных загрузок, установок или изменений WSL. Первый shortlist остаётся Qwen3.5-9B и обязательное сравнение Gemma 4 E4B; pairing/качество/offload/isolation требуют отдельных будущих результатов.
+Ручной prebuilt runtime preflight и последующий первый text-only Qwen smoke зафиксированы как пользовательские результаты. Org ведёт следующий ручной шаг/публикацию; новый survey не требуется. Этот update не разрешает дополнительных загрузок, установок или изменений WSL. Первый shortlist остаётся Qwen3.5-9B и обязательное сравнение Gemma 4 E4B; pairing/качество/offload/isolation требуют отдельных будущих результатов.
 
 План и gates: [PLAN.md](../../PLAN.md); модельный состав и byte evidence: [models.md](models.md), [offload.md](offload.md).
 
 ## Дополнение: получение Qwen набора
 
-Пользователь передал подтверждение: `Qwen3.5-9B-Q4_K_M.gguf` и соответствующий `mmproj-F16.gguf` скачаны, **SHA-256 обоих файлов PASS**. Это пользовательский receipt, не самостоятельная проверка агента. Результат model inference ещё не предоставлен; получение файлов не меняет статусы pairing/качества/offload/isolation.
+Пользователь передал подтверждение: `Qwen3.5-9B-Q4_K_M.gguf` и соответствующий `mmproj-F16.gguf` скачаны, **SHA-256 обоих файлов PASS**. Это пользовательский receipt, не самостоятельная проверка агента. Получение файлов не доказывает vision pairing/качество/offload/isolation.
+
+## Дополнение: первый текстовый Qwen smoke
+
+Позднее пользователь передал stdout **одного короткого запуска**: runtime `b11968-ac8e1694d`, модель **Qwen3.5-9B Q4_K_M**, modalities **text**, ответ на запрос функции `is_prime`. CLI напечатал:
+
+```text
+[ Prompt: 155.6 t/s | Generation: 53.6 t/s ]
+```
+
+Это **CLI-reported throughput из пользовательского вывода**, не независимый benchmark Planner, не TTFT и не гарантированная скорость других запросов. Ответ видимо обрезан при лимите `n256`; в отображённом тексте есть `if name=="main"`. Для различения исходного вывода и артефакта отображения нужен raw log. Сгенерированный код агентом не запускался; корректность функции и assert, завершённость ответа и quality pass не установлены. Peak RAM/VRAM и vision не измерены. Число target synthetic tests остаётся **10 PASS**; этот smoke не добавляется к нему.
